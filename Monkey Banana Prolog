@@ -1,0 +1,12 @@
+moves(state(atdoor,onfloor,atwindow,hasnot),grasp,state(atdoor,onfloor,atwindow,has)).
+moves(state(X,onfloor,X,Has),climb,state(X,onbox,X,Has)).
+moves(state(X,onfloor,X,Has),push(X,Y),state(Y.onfloor,Y,Has)).
+moves(state(X,onbox,X,Has),walk,state(X,onfloor,X,Has)).
+
+goal(state(_,_,_,has)).
+
+solve(State,[]):-goal(State).
+solve(State1,[Move|Rest]):-
+    moves(State1,Move,State2),
+    solve(State2,Rest).
+
