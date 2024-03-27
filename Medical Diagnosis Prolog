@@ -1,0 +1,16 @@
+symptom(john,fever).
+symptom(john,cough).
+symptom(mary,headache).
+symptom(mary,nausea).
+symptom(peter,cough).
+symptom(peter,sore_throat).
+
+disease(flu,(fever,caugh)).
+disease(cold,(headache,cough)).
+disease(strep_throat,(sore,throat,fever)).
+
+diagnose(Person,Disease):-
+    symptom(Person,Symptom),
+    disease(Disease,Symptom),
+    member(Symptom,Symptom).
+
