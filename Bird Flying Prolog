@@ -1,0 +1,6 @@
+can_fly(eagle).
+can_fly(parrot).
+cannot_fly(rabbit).
+cannot_fly(ostrich).
+
+bird_can_fly(Bird):-can_fly(Bird).
