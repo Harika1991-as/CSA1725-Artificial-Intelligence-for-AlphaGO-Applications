@@ -1,0 +1,7 @@
+diet(adult,high_blood_pressure,'low sodium diet').
+diet(adult,diabetes,'low sugar diet').
+diet(child,obesity,'balances diet').
+
+suggest_diet(Age,Disease,Diet):-
+    diet(Age,Disease,Diet).
+
