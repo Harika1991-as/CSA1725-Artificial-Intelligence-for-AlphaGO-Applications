@@ -1,0 +1,38 @@
+% Graph representation
+graph(a, [b, c, d]).
+graph(b, [e, f]).
+graph(c, [g]).
+graph(d, [h]).
+graph(e, []).
+graph(f, []).
+graph(g, []).
+graph(h, []).
+
+% Heuristic values for each node
+heuristic(a, 5).
+heuristic(b, 4).
+heuristic(c, 6).
+heuristic(d, 3).
+heuristic(e, 2).
+heuristic(f, 3).
+heuristic(g, 4).
+heuristic(h, 1).
+
+% Best First Search algorithm
+best_first_search(Start, Goal) :-
+    bfs([[Start]], Goal).
+
+bfs([[Goal | _] | _], Goal) :-
+    write('Goal reached!').
+
+bfs([[Node | Path] | Paths], Goal) :-
+    findall([Neighbor, Node | Path], (graph(Node, Neighbor), \+ member(Neighbor, Path)), NewPaths),
+    append(Paths, NewPaths, UpdatedPaths),
+    sort_paths(UpdatedPaths, SortedPaths),
+    bfs(SortedPaths, Goal).
+
+% Sort paths based on heuristic value
+sort_paths(Paths, SortedPaths) :-
+    map_list_to_pairs(heuristic, Paths, HeuristicPaths),
+    keysort(HeuristicPaths, SortedHeuristicPaths),
+    pairs_values(SortedHeuristicPaths, SortedPaths).
